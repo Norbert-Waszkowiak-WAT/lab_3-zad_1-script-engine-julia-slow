@@ -22,6 +22,9 @@ def create_random_publisher():
         print("Status code:", response.status_code)
         print("Response text:", response.text)
 
+    pub_id = response.json().get('id') 
+    return pub_id
+
 def create_random_affiliation():
     url = BASE_URL + '/affiliations'
     data = {
@@ -45,6 +48,7 @@ def create_random_author():
     data = {
         "name": fake.first_name(),
         "surname": fake.last_name(),
+        "score": 0,
         "affiliation": affiliation_id 
     }
     response = requests.post(url, json=data)
@@ -55,7 +59,8 @@ def create_random_author():
         print("Failed to create author")
         print("Status code:", response.status_code)
         print("Response text:", response.text)
-
+    autor_id = response.json().get('id') 
+    return autor_id
 
 def create_random_journal():
     url = BASE_URL + '/journals'
@@ -73,17 +78,20 @@ def create_random_journal():
         print("Failed to create journal")
         print("Status code:", response.status_code)
         print("Response text:", response.text)
-
+    journal_id = response.json().get('id') 
+    return journal_id
 
 def create_random_book():
     url = BASE_URL + '/books'
+    author1 = create_random_author()
+    publisher= create_random_publisher()
     data = {
         "isbn": fake.isbn13(),
-        "year": random.randint(1950, 2023),
+        "year": 2024,
         "baseScore": random.randint(1, 10),
         "title": fake.sentence(),
-        "publisher": create_random_publisher(),
-        "editor": create_random_author()
+        "publisher": publisher,
+        "editor": author1
     }
     response = requests.post(url, json=data)
     if response.status_code == 201:
@@ -93,17 +101,21 @@ def create_random_book():
         print("Failed to create book")
         print("Status code:", response.status_code)
         print("Response text:", response.text)
-
+    book_id = response.json().get('id') 
+    return book_id
 
 
 def create_random_chapter():
     url = BASE_URL + '/chapters'
+    author1 = create_random_author()
+    author2 = create_random_author()
+    book = create_random_book()
     data = {
-        "score": random.randint(1, 100),
+        "score": random.randint(1, 10),
         "collection": fake.word(),
         "title": fake.sentence(),
-        "authors": [create_random_author(), create_random_author()],
-        "book": create_random_book()
+        "authors": [author1,author2],
+        "book": book
     }
     response = requests.post(url, json=data)
     if response.status_code == 201:
@@ -116,16 +128,19 @@ def create_random_chapter():
 
 def create_random_article():
     url = BASE_URL + '/articles'
+    author1 = create_random_author()
+    author2 = create_random_author()
+    journal = create_random_journal()
     data = {
         "title": fake.sentence(),
         "collection": fake.word(),
         "score": random.randint(1, 100),
-        "year": random.randint(1950, 2023),
+        "year": 2024,
         "vol": random.randint(1, 10),
         "no": random.randint(1, 10),
         "articleNo": random.randint(1, 10),
-        "journal": create_random_journal(),
-        "authors": [create_random_author(), create_random_author()]
+        "journal": journal,
+        "authors": [author1, author2]
     }
     response = requests.post(url, json=data)
     if response.status_code == 201:
@@ -138,17 +153,17 @@ def create_random_article():
 
 
 def add_data():
-    for _ in range(14):
+    for _ in range(10):
         create_random_affiliation()
     for _ in range(15):
         create_random_author()
-    for _ in range(14):
+    for _ in range(15):
         create_random_publisher()
-    for _ in range(14):
+    for _ in range(15):
         create_random_journal()
-    for _ in range(14):
+    for _ in range(15):
         create_random_book()
-    for _ in range(14):
+    for _ in range(15):
         create_random_chapter()
     for _ in range(15):
         create_random_article()
@@ -166,7 +181,7 @@ def fetch_article_ids():
 
 def add_year_to_article(article_url):
     data = {
-        "year": random.randint(1950, 2023)
+        "year": 2024
     }
     response = requests.patch(article_url, json=data)
     if response.status_code == 200:

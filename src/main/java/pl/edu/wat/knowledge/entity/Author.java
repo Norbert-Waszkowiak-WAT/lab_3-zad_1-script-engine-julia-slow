@@ -13,6 +13,7 @@ public class Author {
 
     private String surname;
     private String name;
+    private Integer score;
 
     @DBRef
     private Affiliation affiliation;

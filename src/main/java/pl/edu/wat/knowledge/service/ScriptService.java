@@ -58,7 +58,6 @@ public class ScriptService {
             bindings.putMember("journalRepository", journalRepository);
             bindings.putMember("publisherRepository", publisherRepository);
             bindings.putMember("scoreService", scoreService);
-
             return context.eval("js", script).toString();
         } catch (PolyglotException e) {
             log.error("Error executing", e);

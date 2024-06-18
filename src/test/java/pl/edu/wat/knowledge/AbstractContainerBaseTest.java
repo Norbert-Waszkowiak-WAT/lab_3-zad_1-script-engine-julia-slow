@@ -78,13 +78,7 @@ public abstract class AbstractContainerBaseTest {
                author
         );*/
 
-        chapterRepository.deleteAll();
-        articleRepository.deleteAll();
-        bookRepository.deleteAll();
-        authorRepository.deleteAll();
-        journalRepository.deleteAll();
-        publisherRepository.deleteAll();
-        affiliationRepository.deleteAll();
+
         insertSamplePublishers(9); //done
         insertSampleAffiliations(9); //done
         insertSampleAuthors(); //podane 5 autorów
@@ -107,7 +101,7 @@ public abstract class AbstractContainerBaseTest {
         article1.setArticleNo(random.nextInt(20));
         article1.setJournal(journals.get(random.nextInt(journals.size()))); 
         article1.setAuthors(authors.subList(0, 1));
-        article1.setYear(2015);
+        article1.setYear(2024);
         articleRepository.save(article1);
 
         Article article2 = new Article();
@@ -119,7 +113,7 @@ public abstract class AbstractContainerBaseTest {
         article2.setArticleNo(random.nextInt(20));
         article2.setJournal(journals.get(random.nextInt(journals.size()))); 
         article2.setAuthors(authors.subList(0, 2));
-        article2.setYear(2015);
+        article2.setYear(2024);
         articleRepository.save(article2);
 
         Article article3 = new Article();
@@ -131,7 +125,7 @@ public abstract class AbstractContainerBaseTest {
         article3.setArticleNo(random.nextInt(20));
         article3.setJournal(journals.get(random.nextInt(journals.size()))); 
         article3.setAuthors(authors.subList(1, 2));
-        article3.setYear(2016);
+        article3.setYear(2024);
         articleRepository.save(article3);
 
         Article article4 = new Article();
@@ -143,7 +137,7 @@ public abstract class AbstractContainerBaseTest {
         article4.setArticleNo(random.nextInt(20));
         article4.setJournal(journals.get(random.nextInt(journals.size()))); 
         article4.setAuthors(authors.subList(0, 2));
-        article4.setYear(2016);
+        article4.setYear(2024);
         articleRepository.save(article4);
 
         Article article5 = new Article();
@@ -155,7 +149,7 @@ public abstract class AbstractContainerBaseTest {
         article5.setArticleNo(random.nextInt(20));
         article5.setJournal(journals.get(random.nextInt(journals.size()))); 
         article5.setAuthors(authors.subList(0, 1));
-        article5.setYear(2017);
+        article5.setYear(2024);
         articleRepository.save(article5);
 
         Article article6 = new Article();
@@ -167,7 +161,7 @@ public abstract class AbstractContainerBaseTest {
         article6.setArticleNo(random.nextInt(20));
         article6.setJournal(journals.get(random.nextInt(journals.size()))); 
         article6.setAuthors(authors.subList(1, 2));
-        article6.setYear(2016);
+        article6.setYear(2024);
         articleRepository.save(article6);
 
         Article article7 = new Article();
@@ -179,7 +173,7 @@ public abstract class AbstractContainerBaseTest {
         article7.setArticleNo(random.nextInt(20));
         article7.setJournal(journals.get(random.nextInt(journals.size()))); 
         article7.setAuthors(authors.subList(2,3));
-        article7.setYear(2014);
+        article7.setYear(2024);
         articleRepository.save(article7);
     }
 
@@ -245,6 +239,7 @@ public abstract class AbstractContainerBaseTest {
         Author author1 = new Author();
         author1.setName("Adam");
         author1.setSurname("Nowak");
+        author1.setScore(0);
         author1.setAffiliation(affiliations.get(random.nextInt(affiliations.size()))); 
         authorRepository.save(author1);
         authors.add(author1);
@@ -252,6 +247,7 @@ public abstract class AbstractContainerBaseTest {
         Author author2 = new Author();
         author2.setName("Ewa");
         author2.setSurname("Kowalska");
+        author2.setScore(0);
         author2.setAffiliation(affiliations.get(random.nextInt(affiliations.size()))); 
         authorRepository.save(author2);
         authors.add(author2);
@@ -259,6 +255,7 @@ public abstract class AbstractContainerBaseTest {
         Author author3 = new Author();
         author3.setName("Jan");
         author3.setSurname("Wiśniewski");
+        author3.setScore(0);
         author3.setAffiliation(affiliations.get(random.nextInt(affiliations.size()))); 
         authorRepository.save(author3);
         authors.add(author3);
@@ -266,6 +263,7 @@ public abstract class AbstractContainerBaseTest {
         Author author4 = new Author();
         author4.setName("Anna");
         author4.setSurname("Zielińska");
+        author4.setScore(0);
         author4.setAffiliation(affiliations.get(random.nextInt(affiliations.size()))); 
         authorRepository.save(author4);
         authors.add(author4);
@@ -273,6 +271,7 @@ public abstract class AbstractContainerBaseTest {
         Author author5 = new Author();
         author5.setName("Marek");
         author5.setSurname("Lewandowski");
+        author5.setScore(0);
         author5.setAffiliation(affiliations.get(random.nextInt(affiliations.size()))); 
         authorRepository.save(author5);
         authors.add(author5);
@@ -285,7 +284,7 @@ public abstract class AbstractContainerBaseTest {
 
         Book book1 = new Book();
         book1.setIsbn(random_string(4));
-        book1.setYear(2019); 
+        book1.setYear(2024); 
         book1.setBaseScore(10);
         book1.setTitle("Biblia");
         book1.setEditor(authors.get(random.nextInt(authors.size())));
@@ -294,7 +293,7 @@ public abstract class AbstractContainerBaseTest {
 
         Book book2 = new Book();
         book2.setIsbn(random_string(4));
-        book2.setYear(2018); 
+        book2.setYear(2024); 
         book2.setBaseScore(9);
         book2.setTitle("BBB");
         book2.setEditor(authors.get(random.nextInt(authors.size())));
@@ -303,7 +302,7 @@ public abstract class AbstractContainerBaseTest {
     
         Book book3 = new Book();
         book3.setIsbn(random_string(4));
-        book3.setYear(2017); 
+        book3.setYear(2024); 
         book3.setBaseScore(8);
         book3.setTitle("CCC");
         book3.setEditor(authors.get(random.nextInt(authors.size())));
@@ -312,7 +311,7 @@ public abstract class AbstractContainerBaseTest {
     
         Book book4 = new Book();
         book4.setIsbn(random_string(4));
-        book4.setYear(2016); 
+        book4.setYear(2024); 
         book4.setBaseScore(7);
         book4.setTitle("DDD");
         book4.setEditor(authors.get(random.nextInt(authors.size())));
@@ -321,7 +320,7 @@ public abstract class AbstractContainerBaseTest {
     
         Book book5 = new Book();
         book5.setIsbn(random_string(4));
-        book5.setYear(2015); 
+        book5.setYear(2024); 
         book5.setBaseScore(6);
         book5.setTitle("ABC");
         book5.setEditor(authors.get(random.nextInt(authors.size())));
