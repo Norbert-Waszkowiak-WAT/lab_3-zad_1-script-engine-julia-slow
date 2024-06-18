@@ -7,13 +7,17 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.util.List;
 
 @Data
-public class Author {
+public class Chapter{
     @MongoId
     private String id;
 
-    private String surname;
-    private String name;
+    private Integer score;
+    private String collection;
+    private String title;
 
     @DBRef
-    private Affiliation affiliation;
+    private List<Author> authors;
+    @DBRef
+    private Book book;
+    
 }

@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .addServersItem(new Server().url("https://localhost:8080/"))
-                .addServersItem(new Server().url("http://my-new-server.com")) //Tutaj podmień na swoj url
+                .addServersItem(new Server().url("https://refactored-bassoon-r4v7w4567xq2xrp6-8080.app.github.dev")) //Tutaj podmień na swoj url
                 .info(new Info().title("My API").version("1.0"));
     }
 }
